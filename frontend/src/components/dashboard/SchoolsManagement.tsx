@@ -558,7 +558,7 @@ export default function SchoolsManagement() {
                           onView={() => setViewSchool(school)}
                           onEdit={() => setEditSchool(school)}
                           onDelete={() => setDeleteSchool(school)}
-                          onStatusChange={(s) => statusMutation.mutate({ id: school.id, status: s })}
+                          onStatusChange={(s) => s && statusMutation.mutate({ id: school.id, status: s })}
                         />
                       </div>
                     </td>
@@ -599,7 +599,7 @@ export default function SchoolsManagement() {
                     onView={() => setViewSchool(school)}
                     onEdit={() => setEditSchool(school)}
                     onDelete={() => setDeleteSchool(school)}
-                    onStatusChange={(s) => statusMutation.mutate({ id: school.id, status: s })}
+                    onStatusChange={(s) => s && statusMutation.mutate({ id: school.id, status: s })}
                   />
                 </div>
               </div>
