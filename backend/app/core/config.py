@@ -20,7 +20,13 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> List[str]:
-        return json.loads(self.CORS_ORIGINS)
+        val = self.CORS_ORIGINS.strip()
+        if not val:
+            return ["http://localhost:3000"]
+        # Support both JSON array and comma-separated strings
+        if val.startswith("["):
+            return json.loads(val)
+        return [v.strip() for v in val.split(",") if v.strip()]
 
     class Config:
         env_file = ".env"
