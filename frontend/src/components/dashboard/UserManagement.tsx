@@ -94,7 +94,7 @@ function StaffFormModal({ staff, onClose, onSave, saving }: {
                 {[{ key: "email", label: "Email", type: "email" }, { key: "password", label: "Password", type: "password" }].map(({ key, label, type }) => (
                   <div key={key}>
                     <label className="text-xs text-stone-500 mb-1 block">{label}</label>
-                    <input type={type} value={(form as Record<string, string>)[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+                    <input type={type} value={(form as unknown as Record<string, string>)[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
                       className="w-full px-3 py-2 bg-stone-50 dark:bg-[#221902]/80 border border-stone-200 dark:border-[#8E6708]/20 rounded-xl text-sm text-stone-900 dark:text-white focus:outline-none focus:border-[#C5A021]/50" />
                   </div>
                 ))}
@@ -106,7 +106,7 @@ function StaffFormModal({ staff, onClose, onSave, saving }: {
             {[{ key: "first_name", label: "First Name" }, { key: "last_name", label: "Last Name" }, { key: "phone", label: "Phone" }, { key: "department", label: "Department" }].map(({ key, label }) => (
               <div key={key}>
                 <label className="text-xs text-stone-500 mb-1 block">{label}</label>
-                <input value={(form as Record<string, string>)[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+                <input value={(form as unknown as Record<string, string>)[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#221902]/80 border border-stone-200 dark:border-[#8E6708]/20 rounded-xl text-sm text-stone-900 dark:text-white focus:outline-none focus:border-[#C5A021]/50" />
               </div>
             ))}
@@ -128,7 +128,7 @@ function StaffFormModal({ staff, onClose, onSave, saving }: {
             <div className="grid grid-cols-2 gap-2">
               {PRIVILEGES.map(({ key, label }) => (
                 <label key={key} className="flex items-center gap-2.5 p-2.5 bg-stone-50 dark:bg-[#221902]/80 rounded-xl cursor-pointer hover:bg-stone-100 dark:hover:bg-[#221902] transition-colors">
-                  <input type="checkbox" checked={(form as Record<string, boolean>)[key]}
+                  <input type="checkbox" checked={(form as unknown as Record<string, boolean>)[key]}
                     onChange={e => setForm(f => ({ ...f, [key]: e.target.checked }))}
                     className="w-4 h-4 accent-[#C5A021] rounded" />
                   <span className="text-xs text-stone-700 dark:text-stone-300">{label}</span>
@@ -297,10 +297,10 @@ export default function UserManagement() {
                     </td>
                     <td className="px-4 py-3.5 hidden lg:table-cell">
                       <div className="flex flex-wrap gap-1">
-                        {PRIVILEGES.filter(p => (s as Record<string, unknown>)[p.key]).map(p => (
+                        {PRIVILEGES.filter(p => (s as unknown as Record<string, unknown>)[p.key]).map(p => (
                           <span key={p.key} className="text-[10px] px-1.5 py-0.5 bg-[#C5A021]/10 text-[#8E6708] dark:text-[#C5A021] rounded-md">{p.label}</span>
                         ))}
-                        {!PRIVILEGES.some(p => (s as Record<string, unknown>)[p.key]) && (
+                        {!PRIVILEGES.some(p => (s as unknown as Record<string, unknown>)[p.key]) && (
                           <span className="text-[10px] text-stone-400">No privileges</span>
                         )}
                       </div>
