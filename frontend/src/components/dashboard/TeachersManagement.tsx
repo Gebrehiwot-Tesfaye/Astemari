@@ -474,7 +474,7 @@ export default function TeachersManagement() {
                           onView={() => setViewTeacher(t)}
                           onEdit={() => setEditTeacher(t)}
                           onDelete={() => setDeleteTeacher(t)}
-                          onStatusChange={(s) => statusMutation.mutate({ id: t.id, status: s })}
+                          onStatusChange={(s) => s && statusMutation.mutate({ id: t.id, status: s })}
                         />
                       </div>
                     </td>
@@ -514,7 +514,7 @@ export default function TeachersManagement() {
                     onView={() => setViewTeacher(t)}
                     onEdit={() => setEditTeacher(t)}
                     onDelete={() => setDeleteTeacher(t)}
-                    onStatusChange={(s) => statusMutation.mutate({ id: t.id, status: s })}
+                    onStatusChange={(s) => s && statusMutation.mutate({ id: t.id, status: s })}
                   />
                 </div>
               </div>
