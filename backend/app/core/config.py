@@ -9,10 +9,11 @@ class Settings(BaseSettings):
 
     @property
     def async_database_url(self) -> str:
-        """Return DATABASE_URL with unsupported asyncpg params stripped."""
+        """Strip params asyncpg doesn't support (sslmode, channel_binding)."""
         parsed = urlparse(self.DATABASE_URL)
         params = parse_qs(parsed.query, keep_blank_values=True)
         params.pop("channel_binding", None)
+        params.pop("sslmode", None)
         clean_query = urlencode({k: v[0] for k, v in params.items()})
         return urlunparse(parsed._replace(query=clean_query))
     SECRET_KEY: str
