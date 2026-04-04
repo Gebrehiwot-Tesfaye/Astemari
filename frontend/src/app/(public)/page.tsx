@@ -84,7 +84,7 @@ export default function LandingPage() {
               className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#221902]/20 dark:border-white/20 text-[#221902] dark:text-white font-bold rounded-xl hover:border-[#C5A021]/50 transition-all text-sm">
               {t("nav.jobs")}
             </Link>
-            <a href="https://t.me/astemarimatch" target="_blank" rel="noopener noreferrer"
+            <a href="https://t.me/astemarimatch1" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-all text-sm shadow-md shadow-sky-500/20">
               <Send size={15} /> Join Community
             </a>
@@ -308,7 +308,7 @@ export default function LandingPage() {
               className="px-8 py-3 bg-[#C5A021] text-white font-bold rounded-xl hover:bg-[#8E6708] transition-colors shadow-lg text-sm">
               {t("home.cta.button1")}
             </Link>
-            <a href="https://t.me/astemarimatch" target="_blank" rel="noopener noreferrer"
+            <a href="https://t.me/astemarimatch1" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-colors text-sm">
               <Send size={15} /> Join Telegram
             </a>

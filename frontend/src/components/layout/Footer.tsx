@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Twitter, Instagram, Linkedin, Send } from "lucide-react";
+import { Facebook, Send } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
 export default function Footer() {
@@ -24,11 +24,21 @@ export default function Footer() {
             </Link>
             <p className="text-sm text-stone-300 leading-relaxed">{t("footer.tagline")}</p>
             <div className="mt-5 flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="text-stone-400 hover:text-[#C5A021] transition-colors">
-                  <Icon size={18} />
-                </a>
-              ))}
+              <a href="https://www.facebook.com/share/1AdZV14NmW/" target="_blank" rel="noopener noreferrer"
+                className="text-stone-400 hover:text-[#C5A021] transition-colors">
+                <Facebook size={18} />
+              </a>
+              <a href="https://vm.tiktok.com/ZS982SqJaMJ1q-X2AeJ/" target="_blank" rel="noopener noreferrer"
+                className="text-stone-400 hover:text-[#C5A021] transition-colors">
+                {/* TikTok SVG since lucide doesn't have it */}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+                </svg>
+              </a>
+              <a href="https://t.me/astemarimatch1" target="_blank" rel="noopener noreferrer"
+                className="text-stone-400 hover:text-[#C5A021] transition-colors">
+                <Send size={18} />
+              </a>
             </div>
           </div>
 
@@ -59,7 +69,7 @@ export default function Footer() {
               <li><Link href="/about" className="text-sm text-stone-300 hover:text-[#C5A021] transition-colors">{t("footer.support.contact")}</Link></li>
               <li><Link href="/about" className="text-sm text-stone-300 hover:text-[#C5A021] transition-colors">{t("footer.support.faq")}</Link></li>
               <li>
-                <a href="https://t.me/astemarimatch" target="_blank" rel="noopener noreferrer"
+                <a href="https://t.me/astemarimatch1" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-sky-400 font-medium hover:text-sky-300 transition-colors">
                   <Send size={15} /> {t("footer.support.telegram")}
                 </a>

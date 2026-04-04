@@ -23,9 +23,10 @@ export default function Navbar() {
   const isLoggedIn = mounted && !!user;
 
   const navLinks = [
-    { href: "/jobs",    label: t("nav.jobs") },
-    { href: "/schools", label: t("nav.schools") },
-    { href: "/about",   label: t("nav.about") },
+    { href: "/jobs",     label: t("nav.jobs") },
+    { href: "/teachers", label: t("nav.teachers") },
+    { href: "/schools",  label: t("nav.schools") },
+    { href: "/about",    label: t("nav.about") },
   ];
 
   const isActive = (href: string) => pathname === href;
@@ -58,7 +59,7 @@ export default function Navbar() {
         {/* Right actions */}
         <div className="hidden md:flex items-center gap-1.5">
           {/* Telegram */}
-          <a href="https://t.me/astemarimatch" target="_blank" rel="noopener noreferrer"
+          <a href="https://t.me/astemarimatch1" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-sky-600 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-900/20 rounded-lg transition-colors">
             <Send size={14} /> {t("nav.telegram")}
           </a>
@@ -129,7 +130,7 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          <a href="https://t.me/astemarimatch" target="_blank" rel="noopener noreferrer"
+          <a href="https://t.me/astemarimatch1" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-sky-600 dark:text-sky-400">
             <Send size={15} /> {t("nav.telegram.join")}
           </a>

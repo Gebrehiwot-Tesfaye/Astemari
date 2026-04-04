@@ -4,7 +4,7 @@ from sqlalchemy import select, func, or_
 from math import ceil
 import os, shutil, uuid
 from app.core.database import get_db
-from app.models.teacher import Teacher
+from app.models.teacher import Teacher, TeacherStatus
 from app.models.user import User, UserRole
 from app.schemas.teacher import TeacherUpdate, TeacherOut
 from app.api.deps import get_current_user, require_role
@@ -103,7 +103,54 @@ async def delete_document(
     return {"ok": True}
 
 
-@router.get("/{teacher_id}", response_model=dict)
+@router.get("/public", response_model=dict)
+async def list_teachers_public(
+    page: int = Query(1, ge=1),
+    size: int = Query(20, ge=1, le=100),
+    search: str = Query(None),
+    department: str = Query(None),
+    location: str = Query(None),
+    min_experience_years: int = Query(None),
+    db: AsyncSession = Depends(get_db),
+):
+    """Public endpoint — returns teachers with profile_completed=True, no auth required."""
+    q = select(Teacher).where(Teacher.profile_completed == True, Teacher.status == TeacherStatus.active)
+
+    if search:
+        q = q.where(or_(
+            Teacher.first_name.ilike(f"%{search}%"),
+            Teacher.last_name.ilike(f"%{search}%"),
+            Teacher.department.ilike(f"%{search}%"),
+        ))
+    if department:
+        q = q.where(Teacher.department == department)
+    if location:
+        q = q.where(Teacher.preferred_location.ilike(f"%{location}%"))
+
+    total = (await db.execute(select(func.count()).select_from(q.subquery()))).scalar()
+    rows = (await db.execute(q.offset((page - 1) * size).limit(size).order_by(Teacher.created_at.desc()))).scalars().all()
+
+    dept_rows = (await db.execute(
+        select(Teacher.department).where(Teacher.department.isnot(None), Teacher.profile_completed == True).distinct()
+    )).scalars().all()
+    departments = sorted(d for d in dept_rows if d and d.strip())
+
+    items = []
+    for teacher in rows:
+        d = TeacherOut.model_validate(teacher).model_dump()
+        # Remove sensitive fields only
+        d.pop("user_id", None)
+        items.append(d)
+
+    return {
+        "items": items,
+        "total": total, "page": page, "size": size,
+        "pages": ceil(total / size) if total else 1,
+        "departments": departments,
+    }
+
+
+
 async def get_teacher_by_id(
     teacher_id: int,
     current_user: User = Depends(require_role(UserRole.admin, UserRole.school)),

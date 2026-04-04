@@ -16,6 +16,7 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // ── Navbar ──────────────────────────────────────────────────────────────
     "nav.jobs": "Find Jobs",
+    "nav.teachers": "Teachers",
     "nav.schools": "Schools",
     "nav.about": "About Us",
     "nav.signin": "Sign In",
@@ -194,6 +195,7 @@ const translations: Record<Language, Record<string, string>> = {
   am: {
     // ── Navbar ──────────────────────────────────────────────────────────────
     "nav.jobs": "ስራ ይፈልጉ",
+    "nav.teachers": "አስተማሪዎች",
     "nav.schools": "ትምህርት ቤቶች",
     "nav.about": "ስለ እኛ",
     "nav.signin": "ይግቡ",

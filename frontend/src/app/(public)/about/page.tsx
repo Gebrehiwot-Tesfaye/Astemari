@@ -11,7 +11,7 @@ const cards = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-white dark:bg-[#0c0a09]">
+    <div className="min-h-screen bg-stone-50 dark:bg-[#0c0a09]">
       {/* Hero */}
       <section className="py-14 px-4 text-center bg-[#221902] relative overflow-hidden">
         <div className="absolute inset-0 opacity-20"
@@ -32,33 +32,55 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-5">
           {cards.map((item) => (
             <div key={item.title}
-              className="p-6 rounded-2xl border border-stone-100 dark:border-[#8E6708]/25 bg-stone-50 dark:bg-[#221902]/60 hover:border-[#C5A021]/40 hover:shadow-md transition-all group">
-              <div className="w-11 h-11 rounded-xl bg-[#C5A021]/10 flex items-center justify-center mb-4 group-hover:bg-[#C5A021]/20 transition-colors">
-                <item.icon size={22} className="text-[#C5A021]" />
+              className="relative p-6 rounded-2xl border border-stone-200 dark:border-[#8E6708]/25 bg-white dark:bg-[#221902]/60 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group overflow-hidden">
+              {/* Ethiopian flag stripe top */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 flex">
+                <div className="flex-1 bg-[#078930]" /><div className="flex-1 bg-[#C5A021]" /><div className="flex-1 bg-[#DA121A]" />
               </div>
-              <h3 className="text-base font-bold text-[#221902] dark:text-white mb-2">{item.title}</h3>
+              {/* Icon + title in same row */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-11 h-11 rounded-xl bg-[#C5A021]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#C5A021]/20 transition-colors">
+                  <item.icon size={22} className="text-[#C5A021]" />
+                </div>
+                <h3 className="text-base font-bold text-[#221902] dark:text-white">{item.title}</h3>
+              </div>
               <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
+      {/* Ethiopian flag separator */}
+      <div className="flex h-1 w-full">
+        <div className="flex-1 bg-[#078930]" />
+        <div className="flex-1 bg-[#C5A021]" />
+        <div className="flex-1 bg-[#DA121A]" />
+      </div>
+
       {/* Stats strip */}
-      <section className="py-10 border-y border-stone-100 dark:border-[#8E6708]/20 bg-stone-50 dark:bg-[#221902]/50">
+      <section className="py-10 bg-[#221902] relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { value: "8,200+", label: "Teachers Placed" },
-            { value: "450+",   label: "Partner Schools" },
-            { value: "94%",    label: "Match Satisfaction" },
-            { value: "11",     label: "Regions Covered" },
+            { value: "8,200+", label: "Teachers Placed", geez: "አስተማሪዎች" },
+            { value: "450+",   label: "Partner Schools", geez: "ት/ቤቶች" },
+            { value: "94%",    label: "Match Satisfaction", geez: "ስኬት" },
+            { value: "11",     label: "Regions Covered", geez: "ክልሎች" },
           ].map((s) => (
             <div key={s.label}>
-              <p className="text-3xl font-bold text-[#221902] dark:text-white mb-1">{s.value}</p>
-              <p className="text-stone-500 dark:text-stone-400 font-medium uppercase tracking-wider text-[11px]">{s.label}</p>
+              <p className="text-3xl font-bold text-white mb-0.5">{s.value}</p>
+              <p className="text-[#C5A021] font-bold text-sm mb-0.5">{s.geez}</p>
+              <p className="text-stone-400 font-medium uppercase tracking-wider text-[11px]">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
+
+      {/* Ethiopian flag separator */}
+      <div className="flex h-1 w-full">
+        <div className="flex-1 bg-[#078930]" />
+        <div className="flex-1 bg-[#C5A021]" />
+        <div className="flex-1 bg-[#DA121A]" />
+      </div>
 
       {/* CTA */}
       <section className="py-14 px-4 text-center">

@@ -103,11 +103,20 @@ export default function SchoolsListing() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-[#221902] dark:text-white mb-1">Partner Schools</h1>
-        <p className="text-stone-500 dark:text-stone-400">{data?.total ?? 0} verified schools across Ethiopia</p>
+    <div className="min-h-screen bg-stone-50 dark:bg-[#0c0a09]">
+      {/* Hero header */}
+      <div className="bg-[#221902] py-12 px-4 relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-1 flex">
+          <div className="flex-1 bg-[#078930]" /><div className="flex-1 bg-[#C5A021]" /><div className="flex-1 bg-[#DA121A]" />
+        </div>
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-[#C5A021]/40 text-3xl font-bold mb-1 select-none">ት/ቤቶች</p>
+          <h1 className="text-3xl font-bold text-white mb-2">Partner Schools</h1>
+          <p className="text-stone-400 text-sm">{data?.total ?? 0} verified schools across Ethiopia</p>
+        </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex flex-col sm:flex-row gap-3 mb-4">
         <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-white dark:bg-[#221902]/60 border border-stone-200 dark:border-[#8E6708]/30 rounded-2xl shadow-sm">
           <Search size={18} className="text-stone-400 flex-shrink-0" />
@@ -138,7 +147,11 @@ export default function SchoolsListing() {
             <>
               <div className="grid sm:grid-cols-2 gap-4">
                 {data?.items?.map((school) => (
-                  <div key={school.id} className="bg-white dark:bg-[#221902]/60 p-5 rounded-2xl border border-stone-100 dark:border-[#8E6708]/25 shadow-sm hover:border-[#C5A021]/40 hover:shadow-md transition-all group">
+                  <div key={school.id} className="relative bg-white dark:bg-[#221902]/60 p-5 rounded-2xl border border-stone-200 dark:border-[#8E6708]/25 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group overflow-hidden">
+                    {/* Ethiopian flag stripe top */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 flex">
+                      <div className="flex-1 bg-[#078930]" /><div className="flex-1 bg-[#C5A021]" /><div className="flex-1 bg-[#DA121A]" />
+                    </div>
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-12 h-12 rounded-xl bg-[#C5A021]/10 flex items-center justify-center flex-shrink-0 border border-[#C5A021]/20">
                         <Building2 size={22} className="text-[#C5A021]" />
@@ -160,7 +173,7 @@ export default function SchoolsListing() {
                     {school.description && <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-2 mb-3">{school.description}</p>}
                     <button onClick={() => user ? router.push("/dashboard/jobs") : router.push("/login")}
                       className="w-full flex items-center justify-center gap-1.5 py-2 bg-stone-50 dark:bg-[#221902]/60 border border-stone-200 dark:border-[#8E6708]/25 text-stone-700 dark:text-stone-300 text-xs font-bold rounded-xl hover:bg-[#C5A021] hover:text-white hover:border-[#C5A021] transition-all">
-                      View Jobs <ArrowRight size={12} />
+                      View details <ArrowRight size={12} />
                     </button>
                   </div>
                 ))}
@@ -184,6 +197,7 @@ export default function SchoolsListing() {
             </>
           )}
         </div>
+      </div>
       </div>
     </div>
   );
